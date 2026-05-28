@@ -15,6 +15,10 @@
             'required' => 'O campo :attribute é obrigatório.',
             'email'    => 'O campo :attribute deve ser um e-mail válido.',
             'numeric'  => 'O campo :attribute deve ser um número.',
+            'integer'  => 'O campo :attribute deve ser um número inteiro.',
+            'float'    => 'O campo :attribute deve ser um número de ponto flutuante.',
+            'date'     => 'O campo :attribute deve ser uma data no formato YYYY-MM-DD.',
+            'datetime' => 'O campo :attribute deve ser uma data e hora no formato YYYY-MM-DD HH:II:SS.',
             'min'      => 'O campo :attribute deve ter no mínimo :value.',
             'max'      => 'O campo :attribute deve ter no máximo :value.',
         ];
@@ -111,6 +115,44 @@
                 return true;
             }
             return is_numeric($value);
+        }
+
+        protected function validateInteger(string $field, $value): bool
+        {
+            if (!$this->validateRequired($field, $value)) {
+                return true;
+            }
+            return filter_var($value, FILTER_VALIDATE_INT) !== false;
+        }
+
+        protected function validateFloat(string $field, $value): bool
+        {
+            if (!$this->validateRequired($field, $value)) {
+                return true;
+            }
+            return filter_var($value, FILTER_VALIDATE_FLOAT) !== false;
+        }
+
+        protected function validateDate(string $field, $value): bool
+        {
+            if (!$this->validateRequired($field, $value)) {
+                return true;
+            }
+
+            $format = 'Y-m-d';
+            $date = DateTime::createFromFormat($format, $value);
+            return $date && $date->format($format) === $value;
+        }
+
+        protected function validateDatetime(string $field, $value): bool
+        {
+            if (!$this->validateRequired($field, $value)) {
+                return true;
+            }
+
+            $format = 'Y-m-d H:i:s';
+            $date = DateTime::createFromFormat($format, $value);
+            return $date && $date->format($format) === $value;
         }
 
         protected function validateMin(string $field, $value, array $parameters): bool

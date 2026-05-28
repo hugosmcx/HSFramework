@@ -77,8 +77,8 @@
             $_SESSION['_errors'] = $errors;
             $_SESSION['_old'] = $this->all();
 
-            // Redireciona de volta para a página anterior (ou para a home se não achar o referer)
-            $referer = $_SERVER['HTTP_REFERER'] ?? '/';
+            // Redireciona de volta para a página anterior ou para a própria rota atual quando não houver referer
+            $referer = $_SERVER['HTTP_REFERER'] ?? ($_SERVER['REQUEST_URI'] ?? '/');
             header("Location: {$referer}");
             exit; // Interrompe o ciclo da requisição aqui
         }

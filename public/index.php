@@ -9,6 +9,7 @@
 	use App\Controllers\HomeController;
 	use App\Controllers\ConfigController;
 	use App\Controllers\TestController;
+	use App\Controllers\CadastroController;
 	use App\Middlewares\AuthMiddleware;
 
 	// 1. Inicializa o Container de Injeção de Dependência
@@ -31,9 +32,11 @@
 	// --- DEFINIÇÃO DAS ROTAS ---
 
 	// Controller que PRECISA de banco (O Container vai injetar o PDO)
-	//$router->get('/', [HomeController::class, 'index',], [AuthMiddleware::class]); // Rota protegida por Middleware de Autenticação
+	$router->get('/', [HomeController::class, 'index',], [AuthMiddleware::class]); // Rota protegida por Middleware de Autenticação
 	$router->get('/login', [HomeController::class, 'login']);
 	$router->get('/logout', [HomeController::class, 'logout']);
+
+	$router->post('/cadastro', [CadastroController::class, 'index']);
 
 	// Controller que NÃO PRECISA de banco (O Container vai instanciar limpo)
 	//$router->get('/config/{nome}', [ConfigController::class, 'index']);

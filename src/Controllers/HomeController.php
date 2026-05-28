@@ -1,19 +1,24 @@
 <?php
 	namespace App\Controllers;
 	use PDO;
+	use App\Framework\Controller;
+	use App\Framework\View;
 
-	class HomeController {
+	class HomeController
+	{
 		private PDO $db;
+		private View $view;
 
-		public function __construct(PDO $db)
+		public function __construct(PDO $db, View $view)
 		{
 			$this->db = $db;
+			$this->view = $view;
 		}
 
 		public function index()
 		{
-			echo "Bem-vindo à página inicial! O PDO foi injetado com sucesso.<br>";
-			echo "Controller com acesso ao banco ativo!";
+			$nome = "Visitante";
+			echo $this->view->render('home', ['nome' => $nome]);
 		}
 
 		public function login()
