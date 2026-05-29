@@ -17,8 +17,7 @@
 
 		public function index()
 		{
-			$nome = "Hugo Stéfano";
-			echo $this->view->render('home.index', ['nome' => $nome]);
+			echo $this->view->render('home.index');
 		}
 
 		public function login()
