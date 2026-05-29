@@ -1,8 +1,8 @@
 <?php
-    namespace App\Framework;
+    namespace HSFramework;
 
-    use App\Framework\Validator;
-    use App\Framework\Request;
+    use HSFramework\Validator;
+    use HSFramework\Request;
 
     abstract class FormRequest extends Request
     {

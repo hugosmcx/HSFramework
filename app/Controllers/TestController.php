@@ -1,7 +1,7 @@
 <?php
     namespace App\Controllers;
 
-    use App\Framework\Validator;
+    use HSFramework\Validator;
     use App\Requests\UserStoreRequest;
 
     class TestController

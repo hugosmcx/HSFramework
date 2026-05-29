@@ -1,5 +1,5 @@
 <?php
-    namespace App\Framework;
+    namespace HSFramework;
 
     use InvalidArgumentException;
 

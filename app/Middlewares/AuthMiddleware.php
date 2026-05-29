@@ -1,7 +1,7 @@
 <?php
     namespace App\Middlewares;
 
-    use App\Framework\Middleware;
+    use HSFramework\Middleware;
 
     class AuthMiddleware implements Middleware
     {

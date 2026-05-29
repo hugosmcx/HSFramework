@@ -1,7 +1,7 @@
 <?php
     namespace App\Requests;
 
-    use App\Framework\FormRequest;
+    use HSFramework\FormRequest;
 
     class UserStoreRequest extends FormRequest
     {

@@ -1,8 +1,8 @@
 <?php
 	namespace App\Controllers;
 	use PDO;
-	use App\Framework\Controller;
-	use App\Framework\View;
+	use HSFramework\Controller;
+	use HSFramework\View;
 
 	class HomeController
 	{
@@ -17,8 +17,8 @@
 
 		public function index()
 		{
-			$nome = "Visitante";
-			echo $this->view->render('home', ['nome' => $nome]);
+			$nome = "Hugo Stéfano";
+			echo $this->view->render('home.index', ['nome' => $nome]);
 		}
 
 		public function login()

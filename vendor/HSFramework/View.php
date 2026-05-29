@@ -1,5 +1,5 @@
 <?php
-    namespace App\Framework;
+    namespace HSFramework;
 
     use RuntimeException;
 
@@ -7,14 +7,14 @@
     {
         private string $viewsPath;
 
-        public function __construct(string $viewsPath = __DIR__ . '/../Views')
+        public function __construct(string $viewsPath = __DIR__ . '/../../app/Views')
         {
             $this->viewsPath = rtrim($viewsPath, '/\\');
         }
 
         public function render(string $name, array $data = []): string
         {
-            $name = $this->sanitizeViewName($name);
+            $name = $this->normalizeViewName($name);
             $file = $this->viewsPath . '/' . $name . '.php';
 
             if (! file_exists($file)) {
@@ -28,9 +28,11 @@
             return ob_get_clean();
         }
 
-        private function sanitizeViewName(string $name): string
+        private function normalizeViewName(string $name): string
         {
+            $name = preg_replace('/\.php$/i', '', $name);
             $name = str_replace(['\\', '..'], ['/', ''], $name);
+            $name = str_replace('.', '/', $name);
             $name = trim($name, '/');
             return preg_replace('/[^a-zA-Z0-9_\/\-]/', '', $name);
         }

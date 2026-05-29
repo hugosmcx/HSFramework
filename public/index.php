@@ -1,11 +1,11 @@
 <?php
-	require_once __DIR__ . '/../src/autoload.php';
+	require_once __DIR__ . '/../autoload.php';
 
 	//die("Bati no index.php correto! O metodo enviado foi: " . $_SERVER['REQUEST_METHOD']);
 
-	use App\Framework\Container;
-	use App\Framework\Router;
-	use App\Framework\Validator;
+	use HSFramework\Container;
+	use HSFramework\Router;
+	use HSFramework\Validator;
 	use App\Controllers\HomeController;
 	use App\Controllers\ConfigController;
 	use App\Controllers\TestController;
@@ -32,7 +32,7 @@
 	// --- DEFINIÇÃO DAS ROTAS ---
 
 	// Controller que PRECISA de banco (O Container vai injetar o PDO)
-	$router->get('/', [HomeController::class, 'index',], [AuthMiddleware::class]); // Rota protegida por Middleware de Autenticação
+	$router->get('/', [HomeController::class, 'index',]); // Rota protegida por Middleware de Autenticação
 	$router->get('/login', [HomeController::class, 'login']);
 	$router->get('/logout', [HomeController::class, 'logout']);
 
